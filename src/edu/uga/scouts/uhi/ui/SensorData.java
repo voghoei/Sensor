@@ -90,7 +90,7 @@ public class SensorData extends HttpServlet {
 
 		System.out.println("status: " + status);
 
-		response.getWriter().write("{\"status\"':" + status + "}");
+		response.getWriter().write("{\"status\":" + status + "}");
 
 	}
 
