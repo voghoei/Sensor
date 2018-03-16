@@ -94,6 +94,67 @@ public class DataConnection {
 		}
 
 	}
+	
+	
+	public String fetchMACAddress(int id) throws SQLException {
+		try {
+			connect();
+
+			String sql = "select mac_address from id_registration where id=" + id ;
+
+			// retrieve the result
+			stmt = (PreparedStatement) conn.prepareStatement(sql);
+			ResultSet r = stmt.executeQuery();
+
+			if (r.next()) { // statement returned a result
+
+				// we will use only the first row!
+				return r.getString(1);
+
+			} else {				
+				return "0";
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "0";
+		} finally {
+			close();
+			System.out.println("connection closed.");
+		}
+
+	}
+	
+	
+	public int fetchTimeDelay() throws SQLException {
+		try {
+			connect();
+
+			String sql = "select time_delay from settings where id=1" ;
+
+			// retrieve the result
+			stmt = (PreparedStatement) conn.prepareStatement(sql);
+			ResultSet r = stmt.executeQuery();
+
+			if (r.next()) { // statement returned a result
+
+				// we will use only the first row!
+				return r.getInt(1);
+
+			} else {				
+				return 0;
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		} finally {
+			close();
+			System.out.println("connection closed.");
+		}
+
+	}
+	
 
 	public boolean dataInsert(double latitude, double longitude, double altitude, double h_accuracy, double v_accuracy,
 			double temperature, double humidity, double heat_index, double battery_level, double rssi, double dew_point,

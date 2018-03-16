@@ -44,7 +44,7 @@ public class RegisterSensor extends HttpServlet {
 			String ssid = obj.getString("ssid");
 			DataConnection dc = new DataConnection();
 			boolean status = dc.registerSensor(ssid);			
-			
+
 			response.getWriter().write("{\"status\":" + status + "}");
 
 		} catch (SQLException |JSONException e ) {
